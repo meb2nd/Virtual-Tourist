@@ -46,7 +46,7 @@ final class FlickrClient : NSObject {
     
     // MARK: - Search by Latitude/Longitude
     
-    func searchByLatLon(latitude: Double, longitude: Double, _ completionHandlerForLatLonSearch: @escaping (_ result: [Data]?, _ error: APIError?) -> Void) {
+    func searchByLatLon(latitude: Double, longitude: Double, maxResults: Int = 100, _ completionHandlerForLatLonSearch: @escaping (_ result: [Data]?, _ error: APIError?) -> Void) {
         
         guard coordinatesAreValid (latitude: latitude, longitude: longitude) else {
             
@@ -59,7 +59,8 @@ final class FlickrClient : NSObject {
                           ParameterKeys.SafeSearch: ParameterValues.UseSafeSearch,
                           ParameterKeys.Extras: ParameterValues.MediumURL,
                           ParameterKeys.Format: ParameterValues.ResponseFormat,
-                          ParameterKeys.NoJSONCallback: ParameterValues.DisableJSONCallback]
+                          ParameterKeys.NoJSONCallback: ParameterValues.DisableJSONCallback,
+                          ParameterKeys.PerPage: String(maxResults)]
         
         _ = taskForGETMethod("", parameters: parameters){ (result, error) in
             
@@ -98,7 +99,7 @@ final class FlickrClient : NSObject {
             // Pick a random page!
             let pageLimit = min(totalPages, 40)
             let randomPage = Int(arc4random_uniform(UInt32(pageLimit))) + 1
-            self.getImagesBySearch(parameters, withPageNumber: randomPage, completionHandlerForLatLonSearch)
+            self.getImagesBySearch(parameters, withPageNumber: randomPage, maxResults: maxResults, completionHandlerForLatLonSearch)
             
         }
     }
@@ -130,7 +131,7 @@ final class FlickrClient : NSObject {
     
     // MARK: - Get Images
     
-    private func getImagesBySearch(_ parameters: [String:String?], withPageNumber: Int, _ completionHandlerForGetImagesBySearch: @escaping (_ result: [Data]?, _ error: APIError?) -> Void) {
+    private func getImagesBySearch(_ parameters: [String:String?], withPageNumber: Int, maxResults: Int, _ completionHandlerForGetImagesBySearch: @escaping (_ result: [Data]?, _ error: APIError?) -> Void) {
         
         // add the page to the method's parameters
         var parametersWithPageNumber = parameters
@@ -223,25 +224,5 @@ extension FlickrClient: NetworkClient {
         return data
     }
 }
-
-/*
- 
- Reusable Guards from: https://swiftexample.info/code/reusable-views-ios/
- 
- func foo(url: NSURL) {
- guard let (components, path) = urlGuard(url) as? (NSURLComponents, String) else {
- return
- }
- print("Components \(components) and path \(path)")
- }
- 
- func urlGuard(url: NSURL) -> (NSURLComponents?, String?) {
- guard let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false), path = components.path else {
- return (nil, nil)
- }
- return (components, path)
- }
- 
- */
 
 
