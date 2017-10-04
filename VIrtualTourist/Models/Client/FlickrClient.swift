@@ -48,7 +48,7 @@ final class FlickrClient : NSObject {
     
     func searchByLatLon(latitude: Double, longitude: Double, _ completionHandlerForLatLonSearch: @escaping (_ result: [Data]?, _ error: APIError?) -> Void) {
         
-        guard latitude <= 90, latitude >= -90, longitude <= 180, longitude >= -180 else {
+        guard coordinatesAreValid (latitude: latitude, longitude: longitude) else {
             
             completionHandlerForLatLonSearch(nil, APIError.missingParametersError("Invalid value for longitude/latitude."))
             return
