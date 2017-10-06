@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import MapKit
 
 class PhotoAlbumViewController: UIViewController {
-
+    
     // MARK: Properties
     
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
@@ -23,11 +24,16 @@ class PhotoAlbumViewController: UIViewController {
         }
     }
     
-    private let reuseIdentifier = "PhotoViewCell"
-    var pin: Pin!
+    private let store = PhotoStore()
+    private var batchUpdateOperation = [BlockOperation]()
     
+    private let reuseIdentifier = "PhotoCollectionViewCell"
+    var pin: Pin?
+    
+    @IBOutlet weak var photoAlbumMapView: MKMapView!
     @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var newCollectionButton: UIBarButtonItem!
     
     // MARK: Initializers
     
@@ -48,6 +54,7 @@ class PhotoAlbumViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         photoCollectionView.dataSource = self
+        //photoCollectionView.delegate = self
         setupLayout()
     }
 
@@ -61,9 +68,7 @@ class PhotoAlbumViewController: UIViewController {
         photoCollectionViewFlowLayout.minimumInteritemSpacing = space
         photoCollectionViewFlowLayout.minimumLineSpacing = space
         photoCollectionViewFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
-        
     }
-    
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         
@@ -73,10 +78,21 @@ class PhotoAlbumViewController: UIViewController {
             || (self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass)) {
             
             setupLayout()
-            
         }
     }
-
+    
+    
+    @IBAction func getNewCollection(_ sender: Any) {
+        
+    }
+    
+    deinit {
+        for operation in batchUpdateOperation {
+            operation.cancel()
+        }
+        batchUpdateOperation.removeAll()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -119,9 +135,38 @@ class PhotoAlbumViewController: UIViewController {
      */
 
 }
+/*
+extension PhotoAlbumViewController: UICollectionViewDelegate {
+    
+    // Code for this method based on information in: iOS Programming: The Big Nerd Ranch Guide (Big Nerd Ranch Guides) 6th Edition, Kindle Edition
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        let photo = fetchedResultsController?.object(at: indexPath) as! Photo
+        // Download the image data, which could take some time
+        store.fetchImage(for: photo) { (result) -> Void in
+            // The index path for the photo might have changed between the
+            // time the request started and finished, so find the most
+            // recent index path
 
+            guard let photoIndexPath = self.fetchedResultsController?.indexPath(forObject: photo),
+                case let .success(image) = result else {
+                    return
+            }
+            
+            // When the request finishes, only update the cell if it's still visible
+            if let cell = collectionView.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell {
+                cell.update(with: image)
+            }
+        }
+    }
+}
+ 
+ */
+
+// MARK: - PhotoAlbumViewController: UICollectionViewDataSource
 extension PhotoAlbumViewController: UICollectionViewDataSource {
-    // MARK: UICollectionViewDataSource
+   
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if let fc = fetchedResultsController {
@@ -142,13 +187,17 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
         
         // Get the photo
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
-        let imageData: Data = photo.imageData! as Data
-        cell.photoImageView.image = UIImage(data: imageData)
+        
+        if let imageData = photo.imageData as Data? {
+            cell.update(with: UIImage(data: imageData))
+        } else {
+            cell.update(with: nil)
+            store.fetchImage(for: photo, completionForFetchImage: nil)
+        }
         
        return cell
     }
@@ -171,8 +220,13 @@ extension PhotoAlbumViewController {
 }
 
 // MARK: - PhotoAlbumViewController: NSFetchedResultsControllerDelegate
+// Code for this extension based on information found at: http://swiftexample.info/snippet/uicollectionview-nsfetchedresultscontrollerswift_nor0x_swift
 
 extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
+    
+    private func addUpdateBlock(processingBlock:@escaping ()->Void) {
+        batchUpdateOperation.append(BlockOperation(block: processingBlock))
+    }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // photoCollectionView.beginUpdates()
@@ -184,9 +238,9 @@ extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
         
         switch (type) {
         case .insert:
-            photoCollectionView.insertSections(set)
+            addUpdateBlock {self.photoCollectionView.insertSections(set)}
         case .delete:
-            photoCollectionView.deleteSections(set)
+            addUpdateBlock {self.photoCollectionView.deleteSections(set)}
         default:
             // irrelevant in our case
             break
@@ -197,18 +251,25 @@ extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
         
         switch(type) {
         case .insert:
-            photoCollectionView.insertItems(at: [newIndexPath!])
+            addUpdateBlock {self.photoCollectionView.insertItems(at: [newIndexPath!])}
         case .delete:
-            photoCollectionView.deleteItems(at: [indexPath!])
+            addUpdateBlock {self.photoCollectionView.deleteItems(at: [indexPath!])}
         case .update:
-            photoCollectionView.reloadItems(at: [indexPath!])
+            addUpdateBlock {self.photoCollectionView.reloadItems(at: [indexPath!])}
         case .move:
-            photoCollectionView.deleteItems(at: [indexPath!])
-            photoCollectionView.insertItems(at: [newIndexPath!])
+            addUpdateBlock {self.photoCollectionView.deleteItems(at: [indexPath!])}
+            addUpdateBlock {self.photoCollectionView.insertItems(at: [newIndexPath!])}
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // photoCollectionView.endUpdates()
+        photoCollectionView.performBatchUpdates({ () -> Void in
+            for operation in self.batchUpdateOperation {
+                operation.start()
+            }
+        }, completion: { (finished) -> Void in
+            self.batchUpdateOperation.removeAll(keepingCapacity: false)
+        })
     }
 }

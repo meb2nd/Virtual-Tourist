@@ -33,6 +33,8 @@ final class FlickrClient : NSObject {
         /* 1. Set the common parameters */
         var modParameters = parameters
         modParameters[ParameterKeys.APIKey] = ParameterValues.APIKey
+        modParameters[ParameterKeys.Format] = ParameterValues.ResponseFormat
+        modParameters[ParameterKeys.NoJSONCallback] = ParameterValues.DisableJSONCallback
 
         
         /* 2/3. Build the URL, Configure the request */
@@ -58,8 +60,6 @@ final class FlickrClient : NSObject {
                           ParameterKeys.BoundingBox: bboxString(latitude: latitude, longitude: longitude),
                           ParameterKeys.SafeSearch: ParameterValues.UseSafeSearch,
                           ParameterKeys.Extras: ParameterValues.MediumURL,
-                          ParameterKeys.Format: ParameterValues.ResponseFormat,
-                          ParameterKeys.NoJSONCallback: ParameterValues.DisableJSONCallback,
                           ParameterKeys.PerPage: String(maxResults)]
         
         _ = taskForGETMethod("", parameters: parameters){ (result, error) in

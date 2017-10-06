@@ -2,7 +2,7 @@
 //  Photo+CoreDataProperties.swift
 //  VIrtualTourist
 //
-//  Created by Pete Barnes on 10/4/17.
+//  Created by Pete Barnes on 10/5/17.
 //  Copyright © 2017 Pete Barnes. All rights reserved.
 //
 //
@@ -18,6 +18,7 @@ extension Photo {
     }
 
     @NSManaged public var imageData: NSData?
+    @NSManaged public var url: URL?
     @NSManaged public var pin: Pin?
 
 }

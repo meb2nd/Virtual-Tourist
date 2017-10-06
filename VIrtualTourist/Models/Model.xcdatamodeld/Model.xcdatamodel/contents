@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
         <relationship name="pin" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="photos" inverseEntity="Pin" syncable="YES"/>
         <fetchIndex name="byPinIndex">
             <fetchIndexElement property="pin" type="Binary" order="ascending"/>
@@ -17,7 +18,7 @@
         </fetchIndex>
     </entity>
     <elements>
-        <element name="Photo" positionX="232" positionY="99" width="128" height="75"/>
+        <element name="Photo" positionX="232" positionY="99" width="128" height="90"/>
         <element name="Pin" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>
