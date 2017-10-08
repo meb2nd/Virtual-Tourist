@@ -10,30 +10,32 @@ import UIKit
 import CoreData
 import MapKit
 
-class PhotoAlbumViewController: UIViewController {
+class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     
     // MARK: Properties
     
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             // Whenever the frc changes, we execute the search and
-            // reload the table
+            // reload the collection
             fetchedResultsController?.delegate = self
             executeSearch()
             photoCollectionView.reloadData()
         }
     }
     
-    private let store = PhotoStore()
+    var store: PhotoStore!
     private var batchUpdateOperation = [BlockOperation]()
-    
     private let reuseIdentifier = "PhotoCollectionViewCell"
     var pin: Pin?
+    
+    // MARK: Outlets
     
     @IBOutlet weak var photoAlbumMapView: MKMapView!
     @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var newCollectionButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Initializers
     
@@ -56,6 +58,35 @@ class PhotoAlbumViewController: UIViewController {
         photoCollectionView.dataSource = self
         //photoCollectionView.delegate = self
         setupLayout()
+        
+        guard let pin = pin else {
+           
+            AlertViewHelper.presentAlert(self, title: "Location Error", message: "Missing location information.  Cannot load images.")
+            return
+        }
+        
+        loadData(pin)
+    }
+    
+    fileprivate func enableUI(_ isEnabled: Bool) {
+        newCollectionButton.isEnabled = isEnabled
+        isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()
+    }
+    
+    fileprivate func loadData(_ pin: Pin) {
+        if let fc = fetchedResultsController, let count = fc.sections?.count, count == 0 {
+            
+            enableUI(false)
+            
+            store.fetchPhotos(for: pin, context: fc.managedObjectContext) { (photoResult) in
+                
+                if case PhotosResult.failure = photoResult {
+                    AlertViewHelper.presentAlert(self, title: "Flickr Photo Error", message: "Could not retrieve photos for this location.")
+                }
+                
+                self.enableUI(true)
+            }
+        }
     }
 
     // MARK:  Layout handling
@@ -84,6 +115,14 @@ class PhotoAlbumViewController: UIViewController {
     
     @IBAction func getNewCollection(_ sender: Any) {
         
+        // Posible change create a temp array for the photos to delete and then delete after successful fetch
+        if let photos = fetchedResultsController?.fetchedObjects {
+            for photo in photos {
+                fetchedResultsController?.managedObjectContext.delete(photo as! NSManagedObject)
+            }
+        }
+        
+        loadData(pin!)
     }
     
     deinit {
@@ -167,7 +206,6 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
 // MARK: - PhotoAlbumViewController: UICollectionViewDataSource
 extension PhotoAlbumViewController: UICollectionViewDataSource {
    
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if let fc = fetchedResultsController {
             return (fc.sections?.count)!
@@ -175,7 +213,6 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
             return 0
         }
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let fc = fetchedResultsController {
@@ -192,16 +229,20 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         // Get the photo
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
         
-        if let imageData = photo.imageData as Data? {
-            cell.update(with: UIImage(data: imageData))
-        } else {
+        let imageResult = store.fetchImage(for: photo, context:  (fetchedResultsController?.managedObjectContext)!)
+        
+        switch imageResult {
+        case .success(let image):
+            cell.update(with: image)
+        case .downloading:
             cell.update(with: nil)
-            store.fetchImage(for: photo, completionForFetchImage: nil)
+        case .failure(let error):
+            print(error)
+            cell.update(with: UIImage(named: "No-Image-Found"))
         }
         
        return cell
     }
-
 }
 
 // MARK: - PhotoAlbumViewController (Fetches)
@@ -229,7 +270,7 @@ extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        // photoCollectionView.beginUpdates()
+        // Change UI to show something is happening
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
@@ -263,7 +304,7 @@ extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        // photoCollectionView.endUpdates()
+
         photoCollectionView.performBatchUpdates({ () -> Void in
             for operation in self.batchUpdateOperation {
                 operation.start()

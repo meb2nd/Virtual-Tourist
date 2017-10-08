@@ -8,6 +8,7 @@
 // Code for this class based on information in: iOS Programming: The Big Nerd Ranch Guide (Big Nerd Ranch Guides) 6th Edition, Kindle Edition
 
 import UIKit
+import CoreData
 
 enum ImageResult {
     case success(UIImage)
@@ -31,35 +32,47 @@ class PhotoStore {
         return URLSession(configuration: config)
     }()
     
-    func fetchPhotos(completion: @escaping (PhotosResult) -> Void) {
+    func fetchPhotos(for pin: Pin, context: NSManagedObjectContext, completionForFetchPhotos: @escaping (PhotosResult) -> Void) {
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = appDelegate.stack
+        
+        stack.performBackgroundBatchOperation() { (workerContext) in
+            
+            let backgroundPin = workerContext.object(with: pin.objectID) as! Pin
+            FlickrClient.sharedInstance().searchForPhotos(near: backgroundPin, context: workerContext, maxResults: 21) { (photoResult) in
+                
+                performUIUpdatesOnMain {
+                    completionForFetchPhotos(photoResult)
+                }
+            }
+        }
     }
     
-    func fetchImage(for photo: Photo, completionForFetchImage: ((ImageResult) -> Void)?) {
+    func fetchImage(for photo: Photo, context: NSManagedObjectContext) -> ImageResult {
         
         // If we already have the image just return it
         if let imageData = photo.imageData {
             let result = processImageRequest(data: imageData as Data, error: nil)
-            if let completion = completionForFetchImage {completion(result)}
-            return
+            return result
         }
         
         // Otherwise if we have a valid URL try to download it
         guard let photoURL = photo.url else {
-            if let completion = completionForFetchImage {completion(.failure(PhotoError.invalidPhotoURL))}
-            return
+            return .failure(PhotoError.invalidPhotoURL)
         }
         let request = URLRequest(url: photoURL)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
-            photo.imageData = data as NSData?
-            let result = self.processImageRequest(data: data, error: error)
-            performUIUpdatesOnMain {
-                if let completion = completionForFetchImage {completion(result)}
+            if let data = data {
+                context.perform {
+                    photo.imageData = data as NSData
+                }
             }
         }
         task.resume()
+        return .downloading
     }
     
     private func processImageRequest(data: Data?, error: Error?) -> ImageResult {
@@ -75,5 +88,4 @@ class PhotoStore {
         }
         return .success(image)
     }
-    
 }

@@ -41,7 +41,7 @@
                     <connections>
                         <outlet property="longPressGestureRecognizer" destination="KrE-iA-Oy9" id="2Mb-iu-VEi"/>
                         <outlet property="travelLocationsMapView" destination="h4W-fo-v90" id="rIN-E7-xdw"/>
-                        <segue destination="8Pr-fM-fXI" kind="show" id="lyR-9N-G7I"/>
+                        <segue destination="8Pr-fM-fXI" kind="show" identifier="showPhotos" id="lyR-9N-G7I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,6 +87,10 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
+                                        <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="Z0Q-JD-TbC">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="478"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="Nxu-z9-xTN" customClass="PhotoCollectionViewCell" customModule="VIrtualTourist" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="183"/>
@@ -141,6 +145,7 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Z0Q-JD-TbC" id="l6Y-Of-rNk"/>
                         <outlet property="newCollectionButton" destination="2by-hq-PYa" id="9qH-6A-al9"/>
                         <outlet property="photoAlbumMapView" destination="uLm-6l-Dpa" id="pJ6-9D-Jvo"/>
                         <outlet property="photoCollectionView" destination="kcB-At-bdd" id="hT2-4J-QfG"/>
