@@ -14,6 +14,8 @@ import MapKit
 @objc(Pin)
 public class Pin: NSManagedObject {
 
+    var isDraggable = false
+    
     // MARK: Initializer
     
     convenience init(latitude: Float, longitude: Float, context: NSManagedObjectContext) {
@@ -31,6 +33,7 @@ public class Pin: NSManagedObject {
     }
 }
 extension Pin: MKAnnotation {
+    
     public var coordinate: CLLocationCoordinate2D {
         let coord = CLLocationCoordinate2D(latitude: Double(latitude), longitude: Double(longitude))
         return coord

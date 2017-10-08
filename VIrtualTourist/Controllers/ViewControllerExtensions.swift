@@ -21,18 +21,30 @@ extension UIViewController: MKMapViewDelegate {
         
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            //pinView!.canShowCallout = annotation.subtitle != nil ? true : false
-            pinView!.pinTintColor = .red
-            pinView!.animatesDrop = true
-            //pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         else {
             pinView!.annotation = annotation
         }
         
+        setupPinView(annotation, pinView)
+        
         return pinView
     }
     
+    fileprivate func setupPinView(_ annotation: MKAnnotation, _ pinView: MKPinAnnotationView?) {
+        
+        pinView!.pinTintColor = .red
+        
+        if let pin = annotation as? Pin, pin.isDraggable {
+            pinView!.isDraggable = true
+            pinView!.animatesDrop = true
+            pin.isDraggable = false
+        } else {
+            pinView!.isDraggable = false
+            pinView!.animatesDrop = false
+        }
+    }
+ /*
     public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
@@ -46,6 +58,8 @@ extension UIViewController: MKMapViewDelegate {
             }
         }
     }
+ 
+ */
     
     public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
@@ -55,7 +69,7 @@ extension UIViewController: MKMapViewDelegate {
                 return
         }
         
-        // Inject selected pin into the travelLocationsMapVC
+        // Inject selected pin into the travelLocationsMapVC and show photos
         travelLocationsMapVC.pin = pin
         travelLocationsMapVC.performSegue(withIdentifier: "showPhotos", sender: nil)
         
@@ -72,6 +86,7 @@ extension UIViewController: MKMapViewDelegate {
             let pin = view.annotation as! Pin
             pin.latitude = Float(newCoordinates.latitude)
             pin.longitude = Float(newCoordinates.longitude)
+            view.isDraggable = false
             view.dragState = .none
         default: break
         }
