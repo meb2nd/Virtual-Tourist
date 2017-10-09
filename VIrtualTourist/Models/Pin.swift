@@ -27,6 +27,7 @@ public class Pin: NSManagedObject {
             self.init(entity: ent, insertInto: context)
             self.latitude = latitude
             self.longitude = longitude
+            self.creationDate = Date()
         } else {
             fatalError("Unable to find Entity name!")
         }

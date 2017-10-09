@@ -363,6 +363,7 @@ extension FlickrClient {
             photo.photoID = photoID
             photo.url = url
             photo.pin = pin
+            photo.creationDate = Date()
         }
         return photo
     }

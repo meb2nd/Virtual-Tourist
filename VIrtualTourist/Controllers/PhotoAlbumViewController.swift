@@ -20,7 +20,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
             // reload the collection
             fetchedResultsController?.delegate = self
             executeSearch()
-            photoCollectionView.reloadData()
+            photoCollectionView?.reloadData()
         }
     }
     

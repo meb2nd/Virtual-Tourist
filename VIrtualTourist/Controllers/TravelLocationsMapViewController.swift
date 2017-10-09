@@ -41,18 +41,26 @@ class TravelLocationsMapViewController: UIViewController {
         
         // Create a fetchrequest
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Pin")
+        fr.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         // Create the FetchedResultsController
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
         
+        travelLocationsMapView.delegate = self
+        
         // Restore the mapview
         let defaults = UserDefaults.standard
         if let locationData = defaults.dictionary(forKey: "location") {
-            travelLocationsMapView.centerCoordinate.latitude = locationData["lat"] as! CLLocationDegrees
-            travelLocationsMapView.centerCoordinate.longitude = locationData["long"] as! CLLocationDegrees
-            travelLocationsMapView.region.span.latitudeDelta = locationData["latDelta"] as! CLLocationDegrees
-            travelLocationsMapView.region.span.longitudeDelta = locationData["longDelta"] as! CLLocationDegrees
+            
+            let center = CLLocationCoordinate2DMake(locationData["lat"] as! CLLocationDegrees, locationData["long"] as! CLLocationDegrees)
+            let span = MKCoordinateSpanMake(locationData["latDelta"] as! CLLocationDegrees, locationData["longDelta"] as! CLLocationDegrees)
+            let region = MKCoordinateRegion(center: center, span: span)
+            
+            travelLocationsMapView.setRegion(travelLocationsMapView.regionThatFits(region), animated: true)
+
         }
+        
+        
     }
     
     // Code below is from information at the following site: https://stackoverflow.com/questions/39214923/using-nsuserdefaults-to-save-region-of-an-mkmapview
@@ -74,6 +82,9 @@ class TravelLocationsMapViewController: UIViewController {
         let latitude = Float(newCoordinates.latitude)
         let longitude = Float(newCoordinates.longitude)
         let pin = Pin(latitude: latitude, longitude: longitude, context: fetchedResultsController!.managedObjectContext)
+        
+        // Set isDraggable so pin is dropped onto screen and allowed to drag.
+        pin.isDraggable = true
         print("We've created a pin!: \(pin)")
     }
     
@@ -88,6 +99,9 @@ class TravelLocationsMapViewController: UIViewController {
                 
                 // Create Fetch Request
                 let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
+                fr.sortDescriptors = [NSSortDescriptor(key: "pin", ascending: true),
+                                      NSSortDescriptor(key: "creationDate", ascending: false)]
+                
                 let pred = NSPredicate(format: "pin = %@", argumentArray: [pin])
                 
                 fr.predicate = pred
