@@ -26,8 +26,8 @@ class TravelLocationsMapViewController: UIViewController {
         }
     }
     
-    var longPressGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var travelLocationsMapView: MKMapView!
+    @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
     
     // MARK: - Life cycle
     
@@ -201,7 +201,6 @@ extension TravelLocationsMapViewController: NSFetchedResultsControllerDelegate {
 private extension MKMapView {
     func reloadData(from fecthedResultsController: NSFetchedResultsController<NSFetchRequestResult>?) {
         removeAnnotations(annotations)
-        let count = fecthedResultsController?.fetchedObjects?.count
         addAnnotations(fecthedResultsController?.fetchedObjects as! [MKAnnotation])
     }
 }

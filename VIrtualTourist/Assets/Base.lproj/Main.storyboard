@@ -38,11 +38,17 @@
                         <barButtonItem key="backBarButtonItem" title="OK" id="0Ua-nW-KMK"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="longPressGestureRecognizer" destination="KrE-iA-Oy9" id="DCn-Wm-zRL"/>
                         <outlet property="travelLocationsMapView" destination="h4W-fo-v90" id="rIN-E7-xdw"/>
                         <segue destination="8Pr-fM-fXI" kind="show" identifier="showPhotos" id="lyR-9N-G7I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="KrE-iA-Oy9">
+                    <connections>
+                        <action selector="addTravelLocationPin:" destination="BYZ-38-t0r" id="kmA-k0-VND"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="476" y="133.5832083958021"/>
         </scene>
