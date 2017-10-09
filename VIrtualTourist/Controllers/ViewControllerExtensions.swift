@@ -70,6 +70,8 @@ extension UIViewController: MKMapViewDelegate {
                 return
         }
         
+        mapView.deselectAnnotation(view.annotation, animated: false)
+        
         // Inject selected pin into the travelLocationsMapVC and show photos
         travelLocationsMapVC.pin = pin
         travelLocationsMapVC.performSegue(withIdentifier: "showPhotos", sender: nil)
@@ -77,6 +79,7 @@ extension UIViewController: MKMapViewDelegate {
     }
     
     // Code for this method based on informatino found at:  https://stackoverflow.com/questions/29776853/ios-swift-mapkit-making-an-annotation-draggable-by-the-user
+    // https://discussions.udacity.com/t/virtual-tourist-dragging-a-pin/28906
     
     public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         switch newState {

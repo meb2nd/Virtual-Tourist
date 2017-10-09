@@ -26,9 +26,8 @@ class TravelLocationsMapViewController: UIViewController {
         }
     }
     
-    @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
+    var longPressGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var travelLocationsMapView: MKMapView!
-    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     // MARK: - Life cycle
     
@@ -39,6 +38,10 @@ class TravelLocationsMapViewController: UIViewController {
         // Get the stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let stack = delegate.stack
+        
+        longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(addTravelLocationPin))
+        travelLocationsMapView.gestureRecognizers = [longPressGestureRecognizer]
+        
         
         // Create a fetchrequest
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Pin")
@@ -155,7 +158,7 @@ extension TravelLocationsMapViewController: NSFetchedResultsControllerDelegate {
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        longPressGestureRecognizer.isEnabled = false
+
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -189,7 +192,7 @@ extension TravelLocationsMapViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        longPressGestureRecognizer.isEnabled = true
+        //longPressGestureRecognizer.isEnabled = true
     }
 }
 
