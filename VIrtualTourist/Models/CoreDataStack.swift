@@ -47,7 +47,7 @@ struct CoreDataStack {
         persistingContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         persistingContext.persistentStoreCoordinator = coordinator
         
-        // create a context and add connect it to the coordinator
+        // create main context and connect to persisting context
         context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.parent = persistingContext
         
@@ -66,7 +66,7 @@ struct CoreDataStack {
         self.dbURL = docUrl.appendingPathComponent("model.sqlite")
         
         // Options for migration
-        let options = [NSInferMappingModelAutomaticallyOption: true,NSMigratePersistentStoresAutomaticallyOption: true]
+        let options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]
         
         do {
             try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: options as [NSObject : AnyObject]?)
@@ -100,8 +100,19 @@ internal extension CoreDataStack  {
 extension CoreDataStack {
     
     func saveContext() throws {
+        
         if context.hasChanges {
             try context.save()
+        }
+        
+       persistingContext.perform {
+            if self.persistingContext.hasChanges {
+                do{
+                    try self.persistingContext.save()
+                } catch {
+                    print("Failure to save context: \(error)")
+                }
+            }
         }
     }
     

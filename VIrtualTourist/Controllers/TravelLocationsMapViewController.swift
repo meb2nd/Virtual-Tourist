@@ -28,6 +28,7 @@ class TravelLocationsMapViewController: UIViewController {
     
     @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var travelLocationsMapView: MKMapView!
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     // MARK: - Life cycle
     
@@ -75,17 +76,32 @@ class TravelLocationsMapViewController: UIViewController {
     }
 
     // Code for this method based on infomration found at:  https://stackoverflow.com/questions/30858360/adding-a-pin-annotation-to-a-map-view-on-a-long-press-in-swift
-    @IBAction func addTravelLocationPin(_ sender: Any) {
+    // https://stackoverflow.com/questions/3319591/uilongpressgesturerecognizer-gets-called-twice-when-pressing-down
+    @IBAction func addTravelLocationPin(_ sender: UILongPressGestureRecognizer) {
         
-        let touchPoint = longPressGestureRecognizer.location(in: travelLocationsMapView)
-        let newCoordinates = travelLocationsMapView.convert(touchPoint, toCoordinateFrom: travelLocationsMapView)
-        let latitude = Float(newCoordinates.latitude)
-        let longitude = Float(newCoordinates.longitude)
-        let pin = Pin(latitude: latitude, longitude: longitude, context: fetchedResultsController!.managedObjectContext)
-        
-        // Set isDraggable so pin is dropped onto screen and allowed to drag.
-        pin.isDraggable = true
-        print("We've created a pin!: \(pin)")
+        if sender.state == .began {
+            let touchPoint = sender.location(in: travelLocationsMapView)
+            let newCoordinates = travelLocationsMapView.convert(touchPoint, toCoordinateFrom: travelLocationsMapView)
+            let latitude = Float(newCoordinates.latitude)
+            let longitude = Float(newCoordinates.longitude)
+            pin = Pin(latitude: latitude, longitude: longitude, context: fetchedResultsController!.managedObjectContext)
+            
+            // Set isDraggable so pin is dropped onto screen and allowed to drag.
+            pin!.isDraggable = true
+            print("We've created a pin!: \(pin as Optional)")
+        } else if sender.state == .changed, pin != nil {
+            let touchPoint = sender.location(in: travelLocationsMapView)
+            let newCoordinates = travelLocationsMapView.convert(touchPoint, toCoordinateFrom: travelLocationsMapView)
+            let latitude = Float(newCoordinates.latitude)
+            let longitude = Float(newCoordinates.longitude)
+            
+            pin?.latitude = latitude
+            pin?.longitude = longitude
+            print("Pin has moved!")
+        } else {
+            pin = nil
+            print("Pin has been placed!")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -182,7 +198,9 @@ extension TravelLocationsMapViewController: NSFetchedResultsControllerDelegate {
 private extension MKMapView {
     func reloadData(from fecthedResultsController: NSFetchedResultsController<NSFetchRequestResult>?) {
         removeAnnotations(annotations)
+        let count = fecthedResultsController?.fetchedObjects?.count
         addAnnotations(fecthedResultsController?.fetchedObjects as! [MKAnnotation])
     }
 }
+
 

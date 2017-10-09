@@ -34,6 +34,7 @@ extension UIViewController: MKMapViewDelegate {
     fileprivate func setupPinView(_ annotation: MKAnnotation, _ pinView: MKPinAnnotationView?) {
         
         pinView!.pinTintColor = .red
+        pinView?.canShowCallout = true
         
         if let pin = annotation as? Pin, pin.isDraggable {
             pinView!.isDraggable = true
