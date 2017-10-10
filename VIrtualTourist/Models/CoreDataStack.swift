@@ -101,16 +101,32 @@ extension CoreDataStack {
     
     func saveContext() throws {
         
-        if context.hasChanges {
-            try context.save()
-        }
-        
-       persistingContext.perform {
-            if self.persistingContext.hasChanges {
-                do{
-                    try self.persistingContext.save()
+        backgroundContext.perform {
+            if self.backgroundContext.hasChanges {
+                do {
+                    try self.backgroundContext.save()
                 } catch {
-                    print("Failure to save context: \(error)")
+                    fatalError("Failure to save background context: \(error)")
+                }
+            }
+            
+            self.context.perform {
+                if self.context.hasChanges {
+                    do {
+                        try self.context.save()
+                    } catch {
+                        fatalError("Failure to save main context: \(error)")
+                    }
+                }
+                
+                self.persistingContext.perform {
+                    if self.persistingContext.hasChanges {
+                        do {
+                            try self.persistingContext.save()
+                        } catch {
+                            fatalError("Failure to save persisting context: \(error)")
+                        }
+                    }
                 }
             }
         }

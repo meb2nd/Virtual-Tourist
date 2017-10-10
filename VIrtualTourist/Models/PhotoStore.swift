@@ -32,7 +32,7 @@ class PhotoStore {
         return URLSession(configuration: config)
     }()
     
-    func fetchPhotos(for pin: Pin, context: NSManagedObjectContext, completionForFetchPhotos: @escaping (PhotosResult) -> Void) {
+    func fetchPhotos(for pin: Pin, into context: NSManagedObjectContext, completionForFetchPhotos: @escaping (PhotosResult) -> Void) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let stack = appDelegate.stack
@@ -40,10 +40,29 @@ class PhotoStore {
         stack.performBackgroundBatchOperation() { (workerContext) in
             
             let backgroundPin = workerContext.object(with: pin.objectID) as! Pin
-            FlickrClient.sharedInstance().searchForPhotos(near: backgroundPin, context: workerContext, maxResults: 21) { (photoResult) in
+            FlickrClient.sharedInstance().searchForPhotos(near: backgroundPin, context: workerContext, maxResults: 21) { (photosResult) in
                 
-                performUIUpdatesOnMain {
-                    completionForFetchPhotos(photoResult)
+                workerContext.perform {
+                    
+                    do {
+                        if workerContext.hasChanges {
+                            try workerContext.save()
+                        }
+                    } catch {
+                        print("Error saving to main context: \(error).")
+                        completionForFetchPhotos(.failure(error))
+                        return
+                    }
+                }
+                
+                switch photosResult {
+                case let .success(photos):
+                    let photoIDs = photos.map { return $0.objectID }
+                    let mainContextPhotos =
+                        photoIDs.map { return context.object(with: $0) } as! [Photo]
+                    completionForFetchPhotos(.success(mainContextPhotos))
+                case .failure:
+                    completionForFetchPhotos(photosResult)
                 }
             }
         }
@@ -61,17 +80,12 @@ class PhotoStore {
         guard let photoURL = photo.url else {
             return .failure(PhotoError.invalidPhotoURL)
         }
-        let request = URLRequest(url: photoURL)
-        let task = session.dataTask(with: request) {
-            (data, response, error) -> Void in
-            
-            if let data = data {
-                context.perform {
-                    photo.imageData = data as NSData
-                }
+
+        if let imageData = try? Data(contentsOf: photoURL) {
+            context.perform {
+                photo.imageData = imageData as NSData
             }
         }
-        task.resume()
         return .downloading
     }
     

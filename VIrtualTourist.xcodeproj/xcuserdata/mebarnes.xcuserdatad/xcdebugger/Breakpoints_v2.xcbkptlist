@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/ViewControllerExtensions.swift"
-            timestampString = "529246505.044516"
+            timestampString = "529346900.527461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/ViewControllerExtensions.swift"
-            timestampString = "529246505.044728"
+            timestampString = "529346900.528058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.044879"
+            timestampString = "529346900.528212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.04633"
+            timestampString = "529346900.528702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.047277"
+            timestampString = "529346900.528864"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.048591"
+            timestampString = "529346900.529003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "controllerWillChangeContent(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.049942"
+            timestampString = "529346900.529137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.051324"
+            timestampString = "529346900.529261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "fetchedResultsChangeInsert(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.052753"
+            timestampString = "529346900.529382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "fetchedResultsChangeDelete(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.054138"
+            timestampString = "529346900.529511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "fetchedResultsChangeUpdate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.055665"
+            timestampString = "529346900.529627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "controllerDidChangeContent(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.057109"
+            timestampString = "529346900.529737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "fetchedResultsController"
             landmarkType = "24">
          </BreakpointContent>
@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/ViewControllerExtensions.swift"
-            timestampString = "529246505.058427"
+            timestampString = "529346900.529852"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.058574"
+            timestampString = "529346900.529945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.059896"
+            timestampString = "529346900.530049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.061165"
+            timestampString = "529346900.530169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.062442"
+            timestampString = "529346900.53029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.06372"
+            timestampString = "529346900.530411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,43 +298,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529246505.064563"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
-            timestampString = "529246505.065444"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
-            timestampString = "529246505.065558"
+            timestampString = "529346900.530531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.530642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.53323"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "fetchedResultsController"
             landmarkType = "24">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
-            timestampString = "529246505.065655"
+            timestampString = "529346900.535258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "loadData(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,7 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Models/PhotoStoreClient.swift"
-            timestampString = "529246505.065759"
+            timestampString = "529283068.098227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -378,7 +378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Models/PhotoStoreClient.swift"
-            timestampString = "529246505.06587"
+            timestampString = "529283068.098602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -417,6 +417,758 @@
                   offsetFromSymbolStart = "68">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.537586"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "fetchPhotos(for:into:completionForFetchPhotos:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/CoreDataStack.swift"
+            timestampString = "529346900.538129"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "performBackgroundBatchOperation(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.CoreDataStack.performBackgroundBatchOperation((__ObjC.NSManagedObjectContext) -&gt; ()) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Models/CoreDataStack.swift"
+                  timestampString = "529261689.817593"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "162"
+                  endingLineNumber = "162"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in VIrtualTourist.CoreDataStack.performBackgroundBatchOperation((__ObjC.NSManagedObjectContext) -&gt; ()) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Models/CoreDataStack.swift"
+                  timestampString = "529261689.81978"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.538518"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "fetchPhotos(for:into:completionForFetchPhotos:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/Client/FlickrClient.swift"
+            timestampString = "529346900.538662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "photo(fromJSON:into:for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/Client/FlickrClient.swift"
+            timestampString = "529346900.539006"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "photo(fromJSON:into:for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/Client/FlickrClient.swift"
+            timestampString = "529346900.539109"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
+            landmarkName = "getPhotosBySearch(_:withPageNumber:pin:context:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/Client/FlickrClient.swift"
+            timestampString = "529346900.5392"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
+            landmarkName = "photos(fromJSONPhotosArray:for:into:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.539298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "fetchImage(for:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.539446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "fetchPhotos(for:into:completionForFetchPhotos:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.539573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "fetchPhotos(for:into:completionForFetchPhotos:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.539709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "loadData(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (VIrtualTourist.PhotosResult) -&gt; () in VIrtualTourist.PhotoAlbumViewController.(loadData in _6AA4159B91A80F975AB967007DC7E286)(VIrtualTourist.Pin) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.08825"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (VIrtualTourist.PhotosResult) -&gt; () in VIrtualTourist.PhotoAlbumViewController.(loadData in _6AA4159B91A80F975AB967007DC7E286)(VIrtualTourist.Pin) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.090682"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.541694"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "fetchImage(for:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.541847"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "fetchImage(for:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Models/PhotoStore.swift"
+            timestampString = "529346900.541979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "fetchImage(for:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.542115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.543907"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.545549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "setupLayout()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.547214"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.120429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "323"
+                  endingLineNumber = "323"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.12383"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "323"
+                  endingLineNumber = "323"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.548655"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.136304"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "400">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.138536"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.550406"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.144861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "327"
+                  endingLineNumber = "327"
+                  offsetFromSymbolStart = "548">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.147352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "327"
+                  endingLineNumber = "327"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.552116"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.153853"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
+                  offsetFromSymbolStart = "696">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: Any, at: Swift.Optional&lt;Foundation.IndexPath&gt;, for: __C.NSFetchedResultsChangeType, newIndexPath: Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.156165"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.553908"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
+            landmarkName = "controllerDidChangeContent(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controllerDidChangeContent(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.162086"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "336"
+                  endingLineNumber = "336"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controllerDidChangeContent(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.164355"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "337"
+                  endingLineNumber = "337"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.555063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
+            landmarkName = "controllerDidChangeContent(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.556934"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "controller(_:didChange:atSectionIndex:for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: __ObjC.NSFetchedResultsSectionInfo, atSectionIndex: Swift.Int, for: __C.NSFetchedResultsChangeType) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.174403"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: __ObjC.NSFetchedResultsSectionInfo, atSectionIndex: Swift.Int, for: __C.NSFetchedResultsChangeType) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.176986"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.558862"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "controller(_:didChange:atSectionIndex:for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: __ObjC.NSFetchedResultsSectionInfo, atSectionIndex: Swift.Int, for: __C.NSFetchedResultsChangeType) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.182486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in VIrtualTourist.PhotoAlbumViewController.controller(__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange: __ObjC.NSFetchedResultsSectionInfo, atSectionIndex: Swift.Int, for: __C.NSFetchedResultsChangeType) -&gt; ()"
+                  moduleName = "VIrtualTourist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mebarnes/Documents/Nanodegree/5.%20Core%20Data/VIrtualTourist/VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+                  timestampString = "529345395.185297"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.560759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "fetchedResultsController"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.562212"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.565551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "collectionView(_:layout:insetForSectionAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
+            timestampString = "529346900.567478"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "collectionView(_:layout:minimumLineSpacingForSectionAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -365,6 +365,17 @@ extension FlickrClient {
             photo.pin = pin
             photo.creationDate = Date()
         }
+        
+        context.perform {
+            do {
+                try context.save()
+            } catch {
+                let saveError = error as NSError
+                print("Unable to Save Photo")
+                print("\(saveError), \(saveError.localizedDescription)")
+            }
+        }
+        
         return photo
     }
 }

@@ -12,6 +12,25 @@ import MapKit
 
 class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     
+    
+    
+    var store: PhotoStore!
+    private var batchUpdateOperation = [BlockOperation]()
+    private let reuseIdentifier = "PhotoCollectionViewCell"
+    fileprivate let sectionInsets = UIEdgeInsets(top: 3.0, left: 3.0, bottom: 3.0, right: 3.0)
+    fileprivate let itemsPerRow: CGFloat = 3
+    var pin: Pin?
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var photoAlbumMapView: MKMapView!
+    @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var newCollectionButton: UIBarButtonItem!
+    @IBOutlet weak var photoCollectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var photoAlbumVCStackView: UIStackView!
+    //@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: Properties
     
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
@@ -23,19 +42,6 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
             photoCollectionView?.reloadData()
         }
     }
-    
-    var store: PhotoStore!
-    private var batchUpdateOperation = [BlockOperation]()
-    private let reuseIdentifier = "PhotoCollectionViewCell"
-    var pin: Pin?
-    
-    // MARK: Outlets
-    
-    @IBOutlet weak var photoAlbumMapView: MKMapView!
-    @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var photoCollectionView: UICollectionView!
-    @IBOutlet weak var newCollectionButton: UIBarButtonItem!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Initializers
     
@@ -55,8 +61,9 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        photoCollectionView.dataSource = self
-        //photoCollectionView.delegate = self
+        print("The old height is: \(photoCollectionViewHeight.constant)")
+        photoCollectionViewHeight.constant = photoAlbumVCStackView.frame.height - photoAlbumMapView.frame.height - 8.0
+        print("The new height is: \(photoCollectionViewHeight.constant)")
         setupLayout()
         
         guard let pin = pin else {
@@ -66,39 +73,48 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         }
         
         loadData(pin)
+        
     }
     
     fileprivate func enableUI(_ isEnabled: Bool) {
         newCollectionButton.isEnabled = isEnabled
-        isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()
+        //isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()
     }
     
     fileprivate func loadData(_ pin: Pin) {
-        if let fc = fetchedResultsController, let count = fc.sections?.count, count == 0 {
+
+        if let fc = fetchedResultsController, let count = fc.fetchedObjects?.count, count == 0 {
             
             enableUI(false)
             
-            store.fetchPhotos(for: pin, context: fc.managedObjectContext) { (photoResult) in
+            store.fetchPhotos(for: pin, into: fc.managedObjectContext) { (photoResult) in
                 
-                if case PhotosResult.failure = photoResult {
-                    AlertViewHelper.presentAlert(self, title: "Flickr Photo Error", message: "Could not retrieve photos for this location.")
+                performUIUpdatesOnMain {
+                    
+                    if case PhotosResult.failure = photoResult {
+                        AlertViewHelper.presentAlert(self, title: "Flickr Photo Error", message: "Could not retrieve photos for this location.")
+                    }
+                    self.enableUI(true)
                 }
                 
-                self.enableUI(true)
             }
         }
+        photoCollectionView?.reloadData()
     }
 
     // MARK:  Layout handling
     
     func setupLayout() {
+       /* 
+        let layout = UICollectionViewFlowLayout()
+        photoCollectionView!.collectionViewLayout = layout
         
-        let space:CGFloat = 3.0
+       let space: CGFloat = 3.0
         let dimension = (view.frame.size.width - (2 * space)) / 3.0
         
         photoCollectionViewFlowLayout.minimumInteritemSpacing = space
         photoCollectionViewFlowLayout.minimumLineSpacing = space
-        photoCollectionViewFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        photoCollectionViewFlowLayout.itemSize = CGSize(width: dimension, height: dimension) */
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -208,6 +224,12 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if let fc = fetchedResultsController {
+            print("The number of sections is: \(fc.sections?.count as Optional)")
+            print("The collection view height is: \(collectionView.frame.height)")
+            print("The collection view width is: \(collectionView.frame.width)")
+            let viewOrigin = collectionView.convert(collectionView.frame.origin, to: view)
+            print("The cell origin x coord is: \(viewOrigin.x) and the y coord is: \(viewOrigin.y)")
+
             return (fc.sections?.count)!
         } else {
             return 0
@@ -216,6 +238,9 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let fc = fetchedResultsController {
+            print("The number of objects for Section: \(section) is \(fc.sections![section].numberOfObjects)")
+            print("The collection view height is: \(collectionView.frame.height)")
+            print("The collection view width is: \(collectionView.frame.width)")
             return fc.sections![section].numberOfObjects
         } else {
             return 0
@@ -233,14 +258,19 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         
         switch imageResult {
         case .success(let image):
-            cell.update(with: image)
+            cell.update(with: UIImage(named: "No-Image-Found"))//cell.update(with: image)
         case .downloading:
-            cell.update(with: nil)
+            cell.update(with: UIImage(named: "No-Image-Found"))//cell.update(with: nil)
         case .failure(let error):
             print(error)
             cell.update(with: UIImage(named: "No-Image-Found"))
         }
         
+        print("The cell height is: \(cell.contentView.bounds.height) and the width is: \(cell.contentView.bounds.width)")
+        print("The image height is: \(cell.photoImageView.image?.size.height) and the width is: \(cell.photoImageView.image?.size.width)")
+        cell.backgroundColor = UIColor.blue
+        let cellOrigin = cell.convert(cell.frame.origin, to: view)
+        print("The cell origin x coord is: \(cellOrigin.x) and the y coord is: \(cellOrigin.y)")
        return cell
     }
 }
@@ -312,5 +342,35 @@ extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
         }, completion: { (finished) -> Void in
             self.batchUpdateOperation.removeAll(keepingCapacity: false)
         })
+    }
+}
+
+// MARK: - PhotoAlbumViewController : UICollectionViewDelegateFlowLayout
+// Code for this extension based on information found at: https://www.raywenderlich.com/136159/uicollectionview-tutorial-getting-started
+extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+       return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
     }
 }

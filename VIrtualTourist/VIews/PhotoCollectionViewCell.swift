@@ -14,6 +14,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    /*
     override func awakeFromNib() {
         super.awakeFromNib()
         update(with: nil)
@@ -21,7 +22,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         update(with: nil)
-    }
+    } */
+    
     
     func update(with image: UIImage?) {
         if let imageToDisplay = image {

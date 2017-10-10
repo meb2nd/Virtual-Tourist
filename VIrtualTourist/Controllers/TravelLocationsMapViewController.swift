@@ -10,9 +10,11 @@ import UIKit
 import MapKit
 import CoreData
 
-class TravelLocationsMapViewController: UIViewController {
-
+class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
+    
     // MARK: Properties
+    
+    var store: PhotoStore!
     
     var pin: Pin?
     
@@ -128,9 +130,10 @@ class TravelLocationsMapViewController: UIViewController {
                 // Create FetchedResultsController
                 let fc = NSFetchedResultsController(fetchRequest: fr, managedObjectContext:fetchedResultsController!.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
                 
-                // Inject it into the photoAlbumVC
+                // Pass data to the photoAlbumVC
                 photoAlbumVC.fetchedResultsController = fc
                 photoAlbumVC.pin = pin
+                photoAlbumVC.store = store
             }
         }
     }
