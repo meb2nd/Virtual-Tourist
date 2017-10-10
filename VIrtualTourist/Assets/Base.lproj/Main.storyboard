@@ -89,26 +89,26 @@
                                                     </constraint>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A3z-Ma-53W">
-                                                    <size key="itemSize" width="175" height="183"/>
+                                                    <size key="itemSize" width="118" height="118"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="Nxu-z9-xTN" customClass="PhotoCollectionViewCell" customModule="VIrtualTourist" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="183"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="175" height="183"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WHs-mA-E0G">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="175" height="183"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="0.0"/>
                                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </imageView>
                                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BWL-Fx-jvQ">
-                                                                    <rect key="frame" x="69" y="73" width="37" height="37"/>
+                                                                    <rect key="frame" x="40.5" y="-18.5" width="37" height="37"/>
                                                                 </activityIndicatorView>
                                                             </subviews>
                                                         </view>
@@ -161,7 +161,6 @@
                         <outlet property="photoAlbumMapView" destination="uLm-6l-Dpa" id="pJ6-9D-Jvo"/>
                         <outlet property="photoAlbumVCStackView" destination="f1O-tT-jn6" id="9LO-Bz-yqI"/>
                         <outlet property="photoCollectionView" destination="kcB-At-bdd" id="hT2-4J-QfG"/>
-                        <outlet property="photoCollectionViewFlowLayout" destination="A3z-Ma-53W" id="FPV-Fm-AGO"/>
                         <outlet property="photoCollectionViewHeight" destination="Gsx-1U-mZT" id="nbF-2y-pVk"/>
                     </connections>
                 </viewController>

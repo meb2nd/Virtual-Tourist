@@ -24,12 +24,11 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     // MARK: Outlets
     
     @IBOutlet weak var photoAlbumMapView: MKMapView!
-    @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var newCollectionButton: UIBarButtonItem!
     @IBOutlet weak var photoCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var photoAlbumVCStackView: UIStackView!
-    //@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+   
     
     // MARK: Properties
     
@@ -62,6 +61,8 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
 
         // Do any additional setup after loading the view.
         print("The old height is: \(photoCollectionViewHeight.constant)")
+        
+        // Technique for adjusting controller height based on info found at: https://stackoverflow.com/questions/42437966/how-to-adjust-height-of-uicollectionview-to-be-the-height-of-the-content-size-of
         photoCollectionViewHeight.constant = photoAlbumVCStackView.frame.height - photoAlbumMapView.frame.height - 8.0
         print("The new height is: \(photoCollectionViewHeight.constant)")
         setupLayout()
@@ -258,9 +259,9 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         
         switch imageResult {
         case .success(let image):
-            cell.update(with: UIImage(named: "No-Image-Found"))//cell.update(with: image)
+            cell.update(with: image)
         case .downloading:
-            cell.update(with: UIImage(named: "No-Image-Found"))//cell.update(with: nil)
+            cell.update(with: nil)
         case .failure(let error):
             print(error)
             cell.update(with: UIImage(named: "No-Image-Found"))
@@ -356,7 +357,7 @@ extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        
+
        return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
@@ -367,10 +368,15 @@ extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
         return sectionInsets
     }
     
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
     }
 }
