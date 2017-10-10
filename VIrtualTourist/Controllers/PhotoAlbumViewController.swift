@@ -60,11 +60,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("The old height is: \(photoCollectionViewHeight.constant)")
-        
-        // Technique for adjusting controller height based on info found at: https://stackoverflow.com/questions/42437966/how-to-adjust-height-of-uicollectionview-to-be-the-height-of-the-content-size-of
-        photoCollectionViewHeight.constant = photoAlbumVCStackView.frame.height - photoAlbumMapView.frame.height - 8.0
-        print("The new height is: \(photoCollectionViewHeight.constant)")
+
         setupLayout()
         
         guard let pin = pin else {
@@ -106,16 +102,10 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     // MARK:  Layout handling
     
     func setupLayout() {
-       /* 
-        let layout = UICollectionViewFlowLayout()
-        photoCollectionView!.collectionViewLayout = layout
         
-       let space: CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-        
-        photoCollectionViewFlowLayout.minimumInteritemSpacing = space
-        photoCollectionViewFlowLayout.minimumLineSpacing = space
-        photoCollectionViewFlowLayout.itemSize = CGSize(width: dimension, height: dimension) */
+        // Technique for adjusting controller height based on info found at: https://stackoverflow.com/questions/42437966/how-to-adjust-height-of-uicollectionview-to-be-the-height-of-the-content-size-of
+        photoCollectionViewHeight.constant = photoAlbumVCStackView.frame.height - photoAlbumMapView.frame.height
+        photoCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
