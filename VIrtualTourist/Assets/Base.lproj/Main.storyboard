@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Travel Locations Map View Controller-->
+        <!--Virtual Tourist-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TravelLocationsMapViewController" customModule="VIrtualTourist" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,8 +34,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mx2-cW-Abo">
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="mx2-cW-Abo">
                         <barButtonItem key="backBarButtonItem" title="OK" id="0Ua-nW-KMK"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="mdd-YD-9c5"/>
                     </navigationItem>
                     <connections>
                         <outlet property="longPressGestureRecognizer" destination="KrE-iA-Oy9" id="DCn-Wm-zRL"/>

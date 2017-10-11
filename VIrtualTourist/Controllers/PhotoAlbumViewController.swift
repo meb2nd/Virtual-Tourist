@@ -68,6 +68,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
             return
         }
         
+        navigationController?.isToolbarHidden = false
         setupLayout()
         
         photoAlbumMapView.delegate = self
@@ -131,9 +132,20 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     @IBAction func getNewCollection(_ sender: Any) {
         
         // Posible change create a temp array for the photos to delete and then delete after successful fetch
-        if let photos = fetchedResultsController?.fetchedObjects {
+        if let context = fetchedResultsController?.managedObjectContext,
+        let photos = fetchedResultsController?.fetchedObjects {
             for photo in photos {
                 fetchedResultsController?.managedObjectContext.delete(photo as! NSManagedObject)
+            }
+            
+            context.performAndWait {
+                do {
+                    if context.hasChanges {
+                        try context.save()
+                    }
+                } catch {
+                    print(error)
+                }
             }
         }
         
