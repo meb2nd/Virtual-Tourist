@@ -35,7 +35,7 @@ final class FlickrClient : NSObject {
         modParameters[ParameterKeys.APIKey] = ParameterValues.APIKey
         modParameters[ParameterKeys.Format] = ParameterValues.ResponseFormat
         modParameters[ParameterKeys.NoJSONCallback] = ParameterValues.DisableJSONCallback
-
+        
         
         /* 2/3. Build the URL, Configure the request */
         let request = buildTheURL(method, parameters: modParameters, headers: [:])
@@ -55,7 +55,7 @@ final class FlickrClient : NSObject {
             completionHandlerForLatLonSearch(nil, APIError.missingParametersError("Invalid value for longitude/latitude."))
             return
         }
-
+        
         let parameters = [ParameterKeys.Method: ParameterValues.SearchMethod,
                           ParameterKeys.BoundingBox: bboxString(latitude: latitude, longitude: longitude),
                           ParameterKeys.SafeSearch: ParameterValues.UseSafeSearch,
@@ -106,7 +106,7 @@ final class FlickrClient : NSObject {
     func coordinatesAreValid (latitude: Double, longitude: Double) -> Bool {
         
         return isValueInRange(latitude, min: Constants.SearchLatRange.0, max: Constants.SearchLatRange.1) &&
-        isValueInRange(longitude, min: Constants.SearchLonRange.0, max: Constants.SearchLonRange.1)
+            isValueInRange(longitude, min: Constants.SearchLonRange.0, max: Constants.SearchLonRange.1)
     }
     
     private func isValueInRange(_ value: Double, min: Double, max: Double) -> Bool {
@@ -328,6 +328,19 @@ extension FlickrClient {
             if let photo = photo(fromJSON: photoJSON, into: context, for: pin) {
                 finalPhotos.append(photo)
             }
+            
+            context.perform {
+                do {
+                    if context.hasChanges {
+                        try context.save()
+                    }
+                } catch {
+                    let saveError = error as NSError
+                    print("Unable to Save Photos")
+                    print("\(saveError), \(saveError.localizedDescription)")
+                }
+            }
+            
         }
         
         if finalPhotos.isEmpty && !photosArray.isEmpty {
@@ -340,7 +353,7 @@ extension FlickrClient {
     }
     
     private func photo(fromJSON json: [String : Any],
-                              into context: NSManagedObjectContext, for pin: Pin) -> Photo? {
+                       into context: NSManagedObjectContext, for pin: Pin) -> Photo? {
         guard
             let photoID = json[JSONResponseKeys.PhotoID] as? String,
             let photoURLString = json[JSONResponseKeys.MediumURL] as? String,
@@ -364,16 +377,6 @@ extension FlickrClient {
             photo.url = url
             photo.pin = pin
             photo.creationDate = Date()
-        }
-        
-        context.perform {
-            do {
-                try context.save()
-            } catch {
-                let saveError = error as NSError
-                print("Unable to Save Photo")
-                print("\(saveError), \(saveError.localizedDescription)")
-            }
         }
         
         return photo

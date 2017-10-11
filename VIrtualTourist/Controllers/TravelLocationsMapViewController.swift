@@ -119,13 +119,7 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
                 let pin = pin {
                 
                 // Create Fetch Request
-                let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-                fr.sortDescriptors = [NSSortDescriptor(key: "pin", ascending: true),
-                                      NSSortDescriptor(key: "creationDate", ascending: false)]
-                
-                let pred = NSPredicate(format: "pin = %@", argumentArray: [pin])
-                
-                fr.predicate = pred
+                let fr = createFetchRequest(for: pin)
                 
                 // Create FetchedResultsController
                 let fc = NSFetchedResultsController(fetchRequest: fr, managedObjectContext:fetchedResultsController!.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)

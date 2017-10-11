@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 protocol PhotoStoreClient {
     var store: PhotoStore! { get set }
@@ -31,4 +32,17 @@ extension PhotoStoreClient {
             firstViewController.store = photoStore
         }
     }
+    
+    func createFetchRequest(for pin: Pin) -> NSFetchRequest<NSFetchRequestResult> {
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
+        fr.sortDescriptors = [NSSortDescriptor(key: "pin", ascending: true),
+                              NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        let pred = NSPredicate(format: "pin = %@", argumentArray: [pin])
+        
+        fr.predicate = pred
+        
+        return fr
+    }
 }
+

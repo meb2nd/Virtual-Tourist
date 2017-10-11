@@ -61,13 +61,19 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
 
         // Do any additional setup after loading the view.
 
-        setupLayout()
         
         guard let pin = pin else {
            
             AlertViewHelper.presentAlert(self, title: "Location Error", message: "Missing location information.  Cannot load images.")
             return
         }
+        
+        setupLayout()
+        
+        photoAlbumMapView.delegate = self
+        let region = MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        photoAlbumMapView.setRegion(region, animated: true)
+        photoAlbumMapView.addAnnotation(pin)
         
         loadData(pin)
         
@@ -83,20 +89,22 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         if let fc = fetchedResultsController, let count = fc.fetchedObjects?.count, count == 0 {
             
             enableUI(false)
+            fc.delegate = nil // Prevent collection view from responding to each change in the results controller.
             
-            store.fetchPhotos(for: pin, into: fc.managedObjectContext) { (photoResult) in
+            store.fetchPhotos(for: pin, into: fc.managedObjectContext) { (photosResult) in
                 
                 performUIUpdatesOnMain {
                     
-                    if case PhotosResult.failure = photoResult {
+                    if case PhotosResult.failure = photosResult {
                         AlertViewHelper.presentAlert(self, title: "Flickr Photo Error", message: "Could not retrieve photos for this location.")
                     }
+                    
+                    // Reenable UI and refresh the view collection
                     self.enableUI(true)
+                    self.fetchedResultsController = fc
                 }
-                
             }
         }
-        photoCollectionView?.reloadData()
     }
 
     // MARK:  Layout handling
@@ -181,16 +189,17 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
      */
 
 }
-/*
+
 extension PhotoAlbumViewController: UICollectionViewDelegate {
     
     // Code for this method based on information in: iOS Programming: The Big Nerd Ranch Guide (Big Nerd Ranch Guides) 6th Edition, Kindle Edition
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
+        /*
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
         // Download the image data, which could take some time
-        store.fetchImage(for: photo) { (result) -> Void in
+        store.fetchImage(for: photo, context:  (fetchedResultsController?.managedObjectContext)!) { (result) -> Void in
             // The index path for the photo might have changed between the
             // time the request started and finished, so find the most
             // recent index path
@@ -204,44 +213,9 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
             if let cell = collectionView.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell {
                 cell.update(with: image)
             }
-        }
-    }
-}
- 
- */
-
-// MARK: - PhotoAlbumViewController: UICollectionViewDataSource
-extension PhotoAlbumViewController: UICollectionViewDataSource {
-   
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if let fc = fetchedResultsController {
-            print("The number of sections is: \(fc.sections?.count as Optional)")
-            print("The collection view height is: \(collectionView.frame.height)")
-            print("The collection view width is: \(collectionView.frame.width)")
-            let viewOrigin = collectionView.convert(collectionView.frame.origin, to: view)
-            print("The cell origin x coord is: \(viewOrigin.x) and the y coord is: \(viewOrigin.y)")
-
-            return (fc.sections?.count)!
-        } else {
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let fc = fetchedResultsController {
-            print("The number of objects for Section: \(section) is \(fc.sections![section].numberOfObjects)")
-            print("The collection view height is: \(collectionView.frame.height)")
-            print("The collection view width is: \(collectionView.frame.width)")
-            return fc.sections![section].numberOfObjects
-        } else {
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        } */
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
-        
+        let cell = cell as! PhotoCollectionViewCell
         // Get the photo
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
         
@@ -257,11 +231,33 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
             cell.update(with: UIImage(named: "No-Image-Found"))
         }
         
-        print("The cell height is: \(cell.contentView.bounds.height) and the width is: \(cell.contentView.bounds.width)")
-        print("The image height is: \(cell.photoImageView.image?.size.height) and the width is: \(cell.photoImageView.image?.size.width)")
-        cell.backgroundColor = UIColor.blue
-        let cellOrigin = cell.convert(cell.frame.origin, to: view)
-        print("The cell origin x coord is: \(cellOrigin.x) and the y coord is: \(cellOrigin.y)")
+    }
+}
+
+
+// MARK: - PhotoAlbumViewController: UICollectionViewDataSource
+extension PhotoAlbumViewController: UICollectionViewDataSource {
+   
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if let fc = fetchedResultsController {
+            return (fc.sections?.count)!
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let fc = fetchedResultsController {
+            return fc.sections![section].numberOfObjects
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
+
        return cell
     }
 }

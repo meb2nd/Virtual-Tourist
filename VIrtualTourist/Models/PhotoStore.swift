@@ -48,21 +48,22 @@ class PhotoStore {
                         if workerContext.hasChanges {
                             try workerContext.save()
                         }
+                        
+                        switch photosResult {
+                        case let .success(photos):
+                            let photoIDs = photos.map { return $0.objectID }
+                            let mainContextPhotos =
+                                photoIDs.map { return context.object(with: $0) } as! [Photo]
+                            completionForFetchPhotos(.success(mainContextPhotos))
+                        case .failure:
+                            completionForFetchPhotos(photosResult)
+                        }
+                        
                     } catch {
-                        print("Error saving to main context: \(error).")
+                        print("Error saving to worker context: \(error).")
                         completionForFetchPhotos(.failure(error))
                         return
                     }
-                }
-                
-                switch photosResult {
-                case let .success(photos):
-                    let photoIDs = photos.map { return $0.objectID }
-                    let mainContextPhotos =
-                        photoIDs.map { return context.object(with: $0) } as! [Photo]
-                    completionForFetchPhotos(.success(mainContextPhotos))
-                case .failure:
-                    completionForFetchPhotos(photosResult)
                 }
             }
         }
