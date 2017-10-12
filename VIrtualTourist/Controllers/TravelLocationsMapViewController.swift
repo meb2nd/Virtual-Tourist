@@ -30,12 +30,17 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
     
     @IBOutlet weak var travelLocationsMapView: MKMapView!
     @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
+    @IBOutlet weak var tapPinsToDeleteLabel: UILabel!
+    @IBOutlet weak var tapPinsToDeleteLabelHeight: NSLayoutConstraint!
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        navigationItem.rightBarButtonItem = editButtonItem
+        tapPinsToDeleteLabelHeight.constant = 0
         
         // Get the stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -79,6 +84,22 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
             "longDelta": travelLocationsMapView.region.span.longitudeDelta]
         defaults.set(locationData, forKey: "location")
     }
+    
+    // Information for this method based on information found at:  https://stackoverflow.com/questions/36937285/editbuttonitem-does-not-work
+    // https://stackoverflow.com/questions/34968614/how-do-i-make-a-label-slide-onto-the-screen-when-a-button-is-pressed-swift-2
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        
+        if editing {
+
+            self.tapPinsToDeleteLabelHeight.constant = 50
+
+        } else {
+            
+            self.tapPinsToDeleteLabelHeight.constant = 0
+        }
+    }
 
     // Code for this method based on infomration found at:  https://stackoverflow.com/questions/30858360/adding-a-pin-annotation-to-a-map-view-on-a-long-press-in-swift
     // https://stackoverflow.com/questions/3319591/uilongpressgesturerecognizer-gets-called-twice-when-pressing-down
@@ -93,7 +114,7 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
             
             // Set isDraggable so pin is dropped onto screen and allowed to drag.
             pin!.isDraggable = true
-            print("We've created a pin!: \(pin as Optional)")
+            
         } else if sender.state == .changed, pin != nil {
             let touchPoint = sender.location(in: travelLocationsMapView)
             let newCoordinates = travelLocationsMapView.convert(touchPoint, toCoordinateFrom: travelLocationsMapView)
@@ -102,10 +123,9 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
             
             pin?.latitude = latitude
             pin?.longitude = longitude
-            print("Pin has moved!")
+            
         } else {
             pin = nil
-            print("Pin has been placed!")
         }
     }
     

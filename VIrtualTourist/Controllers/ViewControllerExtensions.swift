@@ -72,6 +72,8 @@ extension UIViewController: MKMapViewDelegate {
         
         mapView.deselectAnnotation(view.annotation, animated: false)
         
+        navigationController?.editButtonItem
+        
         // Inject selected pin into the travelLocationsMapVC and show photos
         travelLocationsMapVC.pin = pin
         travelLocationsMapVC.performSegue(withIdentifier: "showPhotos", sender: nil)
