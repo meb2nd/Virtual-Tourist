@@ -105,7 +105,7 @@
                                                             <subviews>
                                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WHs-mA-E0G">
                                                                     <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
-                                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </imageView>
                                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BWL-Fx-jvQ">
@@ -151,18 +151,18 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="iJ2-w0-8Mk"/>
                         <barButtonItem title="New Collection" id="2by-hq-PYa">
                             <connections>
-                                <action selector="getNewCollection:" destination="8Pr-fM-fXI" id="o4p-GU-ZFl"/>
+                                <action selector="updateCollection:" destination="8Pr-fM-fXI" id="9h4-IX-dmi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Qcc-0n-GBK"/>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="newCollectionButton" destination="2by-hq-PYa" id="9qH-6A-al9"/>
                         <outlet property="photoAlbumMapView" destination="uLm-6l-Dpa" id="pJ6-9D-Jvo"/>
                         <outlet property="photoAlbumVCStackView" destination="f1O-tT-jn6" id="9LO-Bz-yqI"/>
                         <outlet property="photoCollectionView" destination="kcB-At-bdd" id="hT2-4J-QfG"/>
                         <outlet property="photoCollectionViewHeight" destination="Gsx-1U-mZT" id="nbF-2y-pVk"/>
+                        <outlet property="updateCollectionButton" destination="2by-hq-PYa" id="icj-mA-K8J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncB-5x-t4P" userLabel="First Responder" sceneMemberID="firstResponder"/>

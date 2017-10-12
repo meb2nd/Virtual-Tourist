@@ -17,6 +17,8 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     var store: PhotoStore!
     private var batchUpdateOperation = [BlockOperation]()
     private let reuseIdentifier = "PhotoCollectionViewCell"
+    private let newCollectionTitle = "New Collection"
+    private let removeSelectedPicturesTitle = "Remove Selected Pictures"
     fileprivate let sectionInsets = UIEdgeInsets(top: 3.0, left: 3.0, bottom: 3.0, right: 3.0)
     fileprivate let itemsPerRow: CGFloat = 3
     var pin: Pin?
@@ -25,10 +27,10 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     
     @IBOutlet weak var photoAlbumMapView: MKMapView!
     @IBOutlet weak var photoCollectionView: UICollectionView!
-    @IBOutlet weak var newCollectionButton: UIBarButtonItem!
     @IBOutlet weak var photoCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var photoAlbumVCStackView: UIStackView!
-   
+    @IBOutlet weak var updateCollectionButton: UIBarButtonItem!
+    
     
     // MARK: Properties
     
@@ -75,13 +77,16 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         let region = MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         photoAlbumMapView.setRegion(region, animated: true)
         photoAlbumMapView.addAnnotation(pin)
+        photoCollectionView.allowsMultipleSelection = true
+        updateCollectionButton.title = newCollectionTitle
+        
         
         loadData(pin)
         
     }
     
     fileprivate func enableUI(_ isEnabled: Bool) {
-        newCollectionButton.isEnabled = isEnabled
+        updateCollectionButton.isEnabled = isEnabled
         //isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()
     }
     
@@ -129,27 +134,54 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     }
     
     
-    @IBAction func getNewCollection(_ sender: Any) {
+    @IBAction func updateCollection(_ sender: Any) {
         
-        // Posible change create a temp array for the photos to delete and then delete after successful fetch
+        if updateCollectionButton.title == newCollectionTitle {
+            getNewCollection()
+        } else if updateCollectionButton.title == removeSelectedPicturesTitle {
+            removeSelectedPictures ()
+        }
+    }
+    
+    func getNewCollection() {
+        
         if let context = fetchedResultsController?.managedObjectContext,
         let photos = fetchedResultsController?.fetchedObjects {
-            for photo in photos {
-                fetchedResultsController?.managedObjectContext.delete(photo as! NSManagedObject)
-            }
-            
-            context.performAndWait {
-                do {
-                    if context.hasChanges {
-                        try context.save()
-                    }
-                } catch {
-                    print(error)
-                }
-            }
+            deletePhotos(photos as! [NSManagedObject], context)
         }
         
         loadData(pin!)
+    }
+    
+    func removeSelectedPictures () {
+    
+        if let indexPathForSelectedItems = photoCollectionView.indexPathsForSelectedItems, let context = fetchedResultsController?.managedObjectContext {
+            
+            var photosToBeDeleted: [Photo] = []
+            for indexPath in indexPathForSelectedItems {
+                photosToBeDeleted.append(fetchedResultsController?.object(at: indexPath) as! Photo)
+            }
+            
+            deletePhotos(photosToBeDeleted, context)
+            updateCollectionButton.title = newCollectionTitle
+        }
+    
+    }
+    
+    fileprivate func deletePhotos(_ photos: [NSManagedObject], _ context: NSManagedObjectContext) {
+        for photo in photos {
+            fetchedResultsController?.managedObjectContext.delete(photo)
+        }
+        
+        context.performAndWait {
+            do {
+                if context.hasChanges {
+                    try context.save()
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
     
     deinit {
@@ -159,73 +191,15 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         batchUpdateOperation.removeAll()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-
 }
 
+// MARK: - PhotoAlbumViewController: UICollectionViewDelegate
 extension PhotoAlbumViewController: UICollectionViewDelegate {
     
     // Code for this method based on information in: iOS Programming: The Big Nerd Ranch Guide (Big Nerd Ranch Guides) 6th Edition, Kindle Edition
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
-        /*
-        let photo = fetchedResultsController?.object(at: indexPath) as! Photo
-        // Download the image data, which could take some time
-        store.fetchImage(for: photo, context:  (fetchedResultsController?.managedObjectContext)!) { (result) -> Void in
-            // The index path for the photo might have changed between the
-            // time the request started and finished, so find the most
-            // recent index path
-
-            guard let photoIndexPath = self.fetchedResultsController?.indexPath(forObject: photo),
-                case let .success(image) = result else {
-                    return
-            }
-            
-            // When the request finishes, only update the cell if it's still visible
-            if let cell = collectionView.cellForItem(at: photoIndexPath) as? PhotoCollectionViewCell {
-                cell.update(with: image)
-            }
-        } */
         
         let cell = cell as! PhotoCollectionViewCell
         // Get the photo
@@ -243,6 +217,34 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
             cell.update(with: UIImage(named: "No-Image-Found"))
         }
         
+    }
+    
+    fileprivate func setUpdateCollectionButtonTitle(_ collectionView: UICollectionView) {
+        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count > 0 {
+            updateCollectionButton.title = removeSelectedPicturesTitle
+            
+        } else {
+            updateCollectionButton.title = newCollectionTitle
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        setUpdateCollectionButtonTitle(collectionView)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        setUpdateCollectionButtonTitle(collectionView)
+    }
+    
+    // Code for this method based on information at:  https://stackoverflow.com/questions/39558482/collectionview-multiple-cell-selection
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if let selectedItems = collectionView.indexPathsForSelectedItems {
+            if selectedItems.contains(indexPath) {
+                collectionView.deselectItem(at: indexPath, animated: true)
+                return false
+            }
+        }
+        return true
     }
 }
 

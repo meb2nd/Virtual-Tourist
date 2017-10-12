@@ -24,6 +24,13 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         update(with: nil)
     } */
     
+    override var isSelected: Bool {
+        didSet {
+            self.layer.borderWidth = 3.0
+            self.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.clear.cgColor
+            self.alpha = isSelected ? 0.5 : 1.0
+        }
+    }
     
     func update(with image: UIImage?) {
         if let imageToDisplay = image {
