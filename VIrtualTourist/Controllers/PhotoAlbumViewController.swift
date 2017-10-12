@@ -87,6 +87,10 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isToolbarHidden = false
+    }
+    
     fileprivate func enableUI(_ isEnabled: Bool) {
         updateCollectionButton.isEnabled = isEnabled
         isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()

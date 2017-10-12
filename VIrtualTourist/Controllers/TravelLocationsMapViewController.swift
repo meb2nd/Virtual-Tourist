@@ -74,6 +74,10 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isToolbarHidden = true
+    }
+    
     // Code below is from information at the following site: https://stackoverflow.com/questions/39214923/using-nsuserdefaults-to-save-region-of-an-mkmapview
     
     override func viewWillDisappear(_ animated: Bool) {

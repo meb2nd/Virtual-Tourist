@@ -72,12 +72,33 @@ extension UIViewController: MKMapViewDelegate {
         
         mapView.deselectAnnotation(view.annotation, animated: false)
         
-        navigationController?.editButtonItem
-        
-        // Inject selected pin into the travelLocationsMapVC and show photos
-        travelLocationsMapVC.pin = pin
-        travelLocationsMapVC.performSegue(withIdentifier: "showPhotos", sender: nil)
-        
+        if let buttonItem = navigationItem.rightBarButtonItem, buttonItem.title == "Done" {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.stack.context
+            
+            if let pin = context.object(with: pin.objectID) as? Pin {
+                
+                context.delete(pin)
+                
+                context.performAndWait {
+                    do {
+                        if context.hasChanges {
+                            try context.save()
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            
+        } else {
+            
+            // Inject selected pin into the travelLocationsMapVC and show photos
+            travelLocationsMapVC.pin = pin
+            travelLocationsMapVC.performSegue(withIdentifier: "showPhotos", sender: nil)
+        }
     }
     
     // Code for this method based on informatino found at:  https://stackoverflow.com/questions/29776853/ios-swift-mapkit-making-an-annotation-draggable-by-the-user
