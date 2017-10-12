@@ -84,7 +84,6 @@ final class FlickrClient : NSObject {
             let pageLimit = min(totalPages, 40)
             let randomPage = Int(arc4random_uniform(UInt32(pageLimit))) + 1
             self.getImagesBySearch(parameters, withPageNumber: randomPage, completionHandlerForLatLonSearch)
-            
         }
     }
     
@@ -246,7 +245,6 @@ extension FlickrClient: NetworkClient {
 // MARK: - Core data functions
 
 extension FlickrClient {
-    
     
     // MARK: - Search by Latitude/Longitude from Pin
     

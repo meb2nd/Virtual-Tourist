@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/PhotoAlbumViewController.swift"
-            timestampString = "529489009.118982"
+            timestampString = "529519948.314347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "loadData(_:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "enableUI(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529489009.119064"
+            timestampString = "529519948.314441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "setEditing(_:animated:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529489009.119127"
+            timestampString = "529519948.314523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "setEditing(_:animated:)"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VIrtualTourist/Controllers/TravelLocationsMapViewController.swift"
-            timestampString = "529489009.119188"
+            timestampString = "529519948.314599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "setEditing(_:animated:)"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "addTravelLocationPin(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

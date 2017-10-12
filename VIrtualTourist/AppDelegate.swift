@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PhotoStoreClient {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Instantiate photostore and pass to view controllers that need it.
+        // Instantiate photoStore and pass to view controllers that need it.
         store = PhotoStore()
         injectViewController((window?.rootViewController)!, withPhotoStore: store)
         

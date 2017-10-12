@@ -12,8 +12,7 @@ import MapKit
 
 class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     
-    
-    
+    // MARK: - Properties
     var store: PhotoStore!
     private var batchUpdateOperation = [BlockOperation]()
     private let reuseIdentifier = "PhotoCollectionViewCell"
@@ -22,18 +21,6 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     fileprivate let sectionInsets = UIEdgeInsets(top: 3.0, left: 3.0, bottom: 3.0, right: 3.0)
     fileprivate let itemsPerRow: CGFloat = 3
     var pin: Pin?
-    
-    // MARK: Outlets
-    
-    @IBOutlet weak var photoAlbumMapView: MKMapView!
-    @IBOutlet weak var photoCollectionView: UICollectionView!
-    @IBOutlet weak var photoCollectionViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var photoAlbumVCStackView: UIStackView!
-    @IBOutlet weak var updateCollectionButton: UIBarButtonItem!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    
-    // MARK: Properties
     
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
@@ -45,7 +32,17 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         }
     }
     
-    // MARK: Initializers
+    // MARK: - Outlets
+    
+    @IBOutlet weak var photoAlbumMapView: MKMapView!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var photoCollectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var photoAlbumVCStackView: UIStackView!
+    @IBOutlet weak var updateCollectionButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+
+    // MARK: - Initializers
     
     init?(fetchedResultsController fc : NSFetchedResultsController<NSFetchRequestResult>, coder : NSCoder) {
         fetchedResultsController = fc
@@ -59,12 +56,13 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         super.init(coder: aDecoder)
     }
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 
-        
         guard let pin = pin else {
            
             AlertViewHelper.presentAlert(self, title: "Location Error", message: "Missing location information.  Cannot load images.")
@@ -82,14 +80,21 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         photoCollectionView.allowsMultipleSelection = true
         updateCollectionButton.title = newCollectionTitle
         
-        
         loadData(pin)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isToolbarHidden = false
     }
+    
+    deinit {
+        for operation in batchUpdateOperation {
+            operation.cancel()
+        }
+        batchUpdateOperation.removeAll()
+    }
+    
+    // MARK: - Helper Methods
     
     fileprivate func enableUI(_ isEnabled: Bool) {
         updateCollectionButton.isEnabled = isEnabled
@@ -119,7 +124,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         }
     }
 
-    // MARK:  Layout handling
+    // MARK:  - Layout Handling
     
     func setupLayout() {
         
@@ -139,6 +144,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         }
     }
     
+    // MARK: - Actions
     
     @IBAction func updateCollection(_ sender: Any) {
         
@@ -171,7 +177,6 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
             deletePhotos(photosToBeDeleted, context)
             updateCollectionButton.title = newCollectionTitle
         }
-    
     }
     
     fileprivate func deletePhotos(_ photos: [NSManagedObject], _ context: NSManagedObjectContext) {
@@ -189,17 +194,10 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
             }
         }
     }
-    
-    deinit {
-        for operation in batchUpdateOperation {
-            operation.cancel()
-        }
-        batchUpdateOperation.removeAll()
-    }
-    
 }
 
 // MARK: - PhotoAlbumViewController: UICollectionViewDelegate
+
 extension PhotoAlbumViewController: UICollectionViewDelegate {
     
     // Code for this method based on information in: iOS Programming: The Big Nerd Ranch Guide (Big Nerd Ranch Guides) 6th Edition, Kindle Edition
@@ -222,7 +220,6 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
             print(error)
             cell.update(with: UIImage(named: "No-Image-Found"))
         }
-        
     }
     
     fileprivate func setUpdateCollectionButtonTitle(_ collectionView: UICollectionView) {
@@ -256,6 +253,7 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
 
 
 // MARK: - PhotoAlbumViewController: UICollectionViewDataSource
+
 extension PhotoAlbumViewController: UICollectionViewDataSource {
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -366,7 +364,6 @@ extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
 
        return CGSize(width: widthPerItem, height: widthPerItem)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

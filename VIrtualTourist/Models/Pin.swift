@@ -14,11 +14,13 @@ import MapKit
 @objc(Pin)
 public class Pin: NSManagedObject {
 
+    // MARK: - Properties
+    
     var isDraggable = false
     public var title: String? = " "
     public var subtitle: String? = ""
     
-    // MARK: Initializer
+    // MARK: - Initializer
     
     convenience init(latitude: Float, longitude: Float, context: NSManagedObjectContext) {
         
@@ -35,6 +37,9 @@ public class Pin: NSManagedObject {
         }
     }
 }
+
+// MARK: - Pin: MKAnnotation
+
 extension Pin: MKAnnotation {
     
     public var coordinate: CLLocationCoordinate2D {

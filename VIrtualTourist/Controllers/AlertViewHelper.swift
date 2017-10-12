@@ -22,5 +22,4 @@ class AlertViewHelper {
         controller.addAction(okAction)
         viewController.present(controller, animated: true, completion: nil)
     }
-
 }

@@ -10,6 +10,8 @@
 import UIKit
 import CoreData
 
+// MARK: - Enums
+
 enum ImageResult {
     case success(UIImage)
     case downloading
@@ -24,6 +26,8 @@ enum PhotosResult {
     case success([Photo])
     case failure(Error)
 }
+
+// MARK: - PhotoStore
 
 class PhotoStore {
     

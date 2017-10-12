@@ -11,18 +11,12 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    /*
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        update(with: nil)
-    }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        update(with: nil)
-    } */
+    // MARK: - Properties
     
     override var isSelected: Bool {
         didSet {
@@ -32,6 +26,18 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Life Cycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        update(with: nil)
+    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        update(with: nil)
+    }
+
+    // MARK: - Cell Update
     func update(with image: UIImage?) {
         if let imageToDisplay = image {
             activityIndicator.stopAnimating()
@@ -41,5 +47,4 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             photoImageView.image = nil
         }
     }
-    
 }

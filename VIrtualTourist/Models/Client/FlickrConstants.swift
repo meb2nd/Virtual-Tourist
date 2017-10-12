@@ -74,7 +74,8 @@ extension FlickrClient {
         
     }
     
-    // MARK: Flickr Response Values
+    // MARK: - Flickr Response Values
+    
     struct ResponseValues {
         static let OKStatus = "ok"
     }

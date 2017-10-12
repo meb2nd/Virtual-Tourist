@@ -12,12 +12,10 @@ import CoreData
 
 class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var store: PhotoStore!
-    
     var pin: Pin?
-    
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -28,12 +26,21 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
         }
     }
     
+    // MARK: Map Persistence Keys
+    let mapPersistanceKey = "location"
+    let latitudeKey = "lat"
+    let longitudeKey = "long"
+    let latDeltaKey = "latDelta"
+    let longDeltaKey = "longDelta"
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var travelLocationsMapView: MKMapView!
     @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var tapPinsToDeleteLabel: UILabel!
     @IBOutlet weak var tapPinsToDeleteLabelHeight: NSLayoutConstraint!
     
-    // MARK: - Life cycle
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,17 +68,14 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
         
         // Restore the mapview
         let defaults = UserDefaults.standard
-        if let locationData = defaults.dictionary(forKey: "location") {
+        if let locationData = defaults.dictionary(forKey: mapPersistanceKey) {
             
-            let center = CLLocationCoordinate2DMake(locationData["lat"] as! CLLocationDegrees, locationData["long"] as! CLLocationDegrees)
-            let span = MKCoordinateSpanMake(locationData["latDelta"] as! CLLocationDegrees, locationData["longDelta"] as! CLLocationDegrees)
+            let center = CLLocationCoordinate2DMake(locationData[latitudeKey] as! CLLocationDegrees, locationData[longitudeKey] as! CLLocationDegrees)
+            let span = MKCoordinateSpanMake(locationData[latDeltaKey] as! CLLocationDegrees, locationData[longDeltaKey] as! CLLocationDegrees)
             let region = MKCoordinateRegion(center: center, span: span)
             
             travelLocationsMapView.setRegion(travelLocationsMapView.regionThatFits(region), animated: true)
-
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,15 +86,16 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
     
     override func viewWillDisappear(_ animated: Bool) {
         let defaults = UserDefaults.standard
-        let locationData = ["lat": travelLocationsMapView.centerCoordinate.latitude,
-            "long": travelLocationsMapView.centerCoordinate.longitude,
-            "latDelta": travelLocationsMapView.region.span.latitudeDelta,
-            "longDelta": travelLocationsMapView.region.span.longitudeDelta]
-        defaults.set(locationData, forKey: "location")
+        let locationData = [latitudeKey: travelLocationsMapView.centerCoordinate.latitude,
+            longitudeKey: travelLocationsMapView.centerCoordinate.longitude,
+            latDeltaKey: travelLocationsMapView.region.span.latitudeDelta,
+            longDeltaKey: travelLocationsMapView.region.span.longitudeDelta]
+        defaults.set(locationData, forKey: mapPersistanceKey)
     }
     
+    // MARK: - View Editing
+    
     // Information for this method based on information found at:  https://stackoverflow.com/questions/36937285/editbuttonitem-does-not-work
-    // https://stackoverflow.com/questions/34968614/how-do-i-make-a-label-slide-onto-the-screen-when-a-button-is-pressed-swift-2
     override func setEditing(_ editing: Bool, animated: Bool) {
         
         super.setEditing(editing, animated: animated)
@@ -105,7 +110,8 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
         }
     }
 
-    // Code for this method based on infomration found at:  https://stackoverflow.com/questions/30858360/adding-a-pin-annotation-to-a-map-view-on-a-long-press-in-swift
+    // MARK: - Actions
+    // Code for this method based on information found at:  https://stackoverflow.com/questions/30858360/adding-a-pin-annotation-to-a-map-view-on-a-long-press-in-swift
     // https://stackoverflow.com/questions/3319591/uilongpressgesturerecognizer-gets-called-twice-when-pressing-down
     @IBAction func addTravelLocationPin(_ sender: UILongPressGestureRecognizer) {
         
@@ -133,6 +139,8 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
         }
     }
     
+    // MARK: - Handle Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -148,7 +156,7 @@ class TravelLocationsMapViewController: UIViewController, PhotoStoreClient {
                 // Create FetchedResultsController
                 let fc = NSFetchedResultsController(fetchRequest: fr, managedObjectContext:fetchedResultsController!.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
                 
-                // Pass data to the photoAlbumVC
+                // Pass data to the Photo Album View Controller
                 photoAlbumVC.fetchedResultsController = fc
                 photoAlbumVC.pin = pin
                 photoAlbumVC.store = store
@@ -179,7 +187,6 @@ extension TravelLocationsMapViewController: NSFetchedResultsControllerDelegate {
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -213,7 +220,6 @@ extension TravelLocationsMapViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        //longPressGestureRecognizer.isEnabled = true
     }
 }
 

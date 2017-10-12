@@ -9,7 +9,7 @@
 import MapKit
 import CoreData
 
-// MARK: - MKMapViewDelegate
+// MARK: - UIViewController: MKMapViewDelegate
 
 extension UIViewController: MKMapViewDelegate {
     
@@ -45,22 +45,6 @@ extension UIViewController: MKMapViewDelegate {
             pinView!.animatesDrop = false
         }
     }
- /*
-    public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            if view.annotation?.subtitle != nil, let toOpen = view.annotation?.subtitle!,
-                toOpen.lowercased().starts(with: "http://") || toOpen.lowercased().starts(with: "https://") {
-                
-                app.open(URL(string: toOpen)!, completionHandler: nil)
-                
-            } else {
-                //AlertViewHelper.presentAlert(self, title: "Cannot Display Student Link", message: "Student has entered an invalid URL")
-            }
-        }
-    }
- 
- */
     
     public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
@@ -91,8 +75,6 @@ extension UIViewController: MKMapViewDelegate {
                     }
                 }
             }
-            
-            
         } else {
             
             // Inject selected pin into the travelLocationsMapVC and show photos
