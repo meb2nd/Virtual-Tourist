@@ -30,6 +30,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     @IBOutlet weak var photoCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var photoAlbumVCStackView: UIStackView!
     @IBOutlet weak var updateCollectionButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     // MARK: Properties
@@ -77,6 +78,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
         let region = MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         photoAlbumMapView.setRegion(region, animated: true)
         photoAlbumMapView.addAnnotation(pin)
+        photoAlbumMapView.isUserInteractionEnabled = false
         photoCollectionView.allowsMultipleSelection = true
         updateCollectionButton.title = newCollectionTitle
         
@@ -87,7 +89,7 @@ class PhotoAlbumViewController: UIViewController, PhotoStoreClient {
     
     fileprivate func enableUI(_ isEnabled: Bool) {
         updateCollectionButton.isEnabled = isEnabled
-        //isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()
+        isEnabled ? activityIndicator.stopAnimating(): activityIndicator.startAnimating()
     }
     
     fileprivate func loadData(_ pin: Pin) {
