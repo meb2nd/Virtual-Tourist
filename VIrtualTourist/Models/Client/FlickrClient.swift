@@ -326,19 +326,6 @@ extension FlickrClient {
             if let photo = photo(fromJSON: photoJSON, into: context, for: pin) {
                 finalPhotos.append(photo)
             }
-            
-            context.perform {
-                do {
-                    if context.hasChanges {
-                        try context.save()
-                    }
-                } catch {
-                    let saveError = error as NSError
-                    print("Unable to Save Photos")
-                    print("\(saveError), \(saveError.localizedDescription)")
-                }
-            }
-            
         }
         
         if finalPhotos.isEmpty && !photosArray.isEmpty {
@@ -375,6 +362,18 @@ extension FlickrClient {
             photo.url = url
             photo.pin = pin
             photo.creationDate = Date()
+        }
+        
+        context.perform {
+            do {
+                if context.hasChanges {
+                    try context.save()
+                }
+            } catch {
+                let saveError = error as NSError
+                print("Unable to Save Photo")
+                print("\(saveError), \(saveError.localizedDescription)")
+            }
         }
         
         return photo
