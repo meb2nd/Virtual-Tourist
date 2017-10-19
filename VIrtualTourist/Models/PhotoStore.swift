@@ -31,11 +31,6 @@ enum PhotosResult {
 
 class PhotoStore {
     
-    private let session: URLSession = {
-        let config = URLSessionConfiguration.default
-        return URLSession(configuration: config)
-    }()
-    
     func fetchPhotos(for pin: Pin, into context: NSManagedObjectContext, completionForFetchPhotos: @escaping (PhotosResult) -> Void) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

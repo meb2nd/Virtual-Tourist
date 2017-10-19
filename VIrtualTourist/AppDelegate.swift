@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PhotoStoreClient {
         injectViewController((window?.rootViewController)!, withPhotoStore: store)
         
         // Start Autosaving
-        stack.autoSave(60)
+        stack.autoSave(10)
         
         return true
     }
